@@ -5,8 +5,9 @@ export default function RootLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{
-        title: 'Home',
+      <Stack.Screen name="Search" options={{
+        title: 'Search',
+        headerShown: false,
         headerLeft: () => (
           <MaterialIcons name="catching-pokemon" size={30} color={'red'} style={{marginRight: 3}}/>
         ),

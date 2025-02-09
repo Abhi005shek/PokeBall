@@ -1,21 +1,23 @@
 {
   "expo": {
-    "name": "TodoApp",
-    "slug": "TodoApp",
+    "name": "PokeBall",
+    "slug": "",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "orientation": "default",
+    "icon": "./assets/images/pokeLogo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/pokeLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.abhishekvk.TodoApp",
+      "versionCode": 1
     },
     "web": {
       "bundler": "metro",
@@ -27,15 +29,24 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/pokeLogo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "dff2372e-f158-4dbb-91b2-a5b0a230db77"
+      }
     }
   }
 }

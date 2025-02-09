@@ -1,39 +1,46 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { FontAwesome, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
+import { Tabs } from "expo-router";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React from 'react'
+import SplashScreen from "../SplashScreen";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+function _layout() {
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  const [fontLoaded] = useFonts({
+    'poppins': require('../assets/fonts/Poppins-Regular.ttf'),
+    'agbaluma': require('../assets/fonts/Agbalumo-Regular.ttf'),
   });
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
+  if(!fontLoaded){
+    return <SplashScreen/>
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+    <Tabs>
+        <Tabs.Screen name="(tabs)" options={{
+            headerShown: false,
+            title: 'Pokemons',
+            tabBarIcon: ()=>   <MaterialIcons name="catching-pokemon" size={30} color={'red'} style={{marginRight: 3}}/>
+         
+        }} />
+
+        <Tabs.Screen name="(ability)"  options={{
+            headerShown: false,
+            title: 'Abilities',
+            tabBarIcon: ()=> <FontAwesome name="leaf" size={24} color="green" />
+        }} />
+
+        <Tabs.Screen name="(search)"  options={{
+            headerShown: false,
+            title: 'Search',
+            headerTransparent: true,
+            headerTintColor: "white",
+            headerStyle: {backgroundColor: 'black',},
+            tabBarIcon: ()=> <FontAwesome name="search" size={24} color="black" />
+        }} />
+    </Tabs>
+  )
 }
+
+export default _layout
